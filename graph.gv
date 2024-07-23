@@ -1,0 +1,130 @@
+strict digraph {
+
+	label="System Call Sequence";
+
+
+	"ioctl" [  weight=0 ];
+
+	"ioctl" -> "close" [  weight=8 ];
+
+	"ioctl" -> "clock_gettime" [  weight=5 ];
+
+	"ioctl" -> "sendmsg" [  weight=2 ];
+
+	"ioctl" -> "openat" [  weight=4 ];
+
+	"ioctl" -> "ioctl" [  weight=41 ];
+
+	"recvmsg" [  weight=0 ];
+
+	"recvmsg" -> "clock_gettime" [  weight=3 ];
+
+	"read" [  weight=0 ];
+
+	"read" -> "close" [  weight=8 ];
+
+	"read" -> "readlink" [  weight=4 ];
+
+	"read" -> "clock_gettime" [  weight=7 ];
+
+	"read" -> "timerfd_settime" [  weight=1 ];
+
+	"read" -> "epoll_ctl" [  weight=27 ];
+
+	"read" -> "write" [  weight=8 ];
+
+	"read" -> "ioctl" [  weight=3 ];
+
+	"read" -> "read" [  weight=16 ];
+
+	"clock_gettime" [  weight=0 ];
+
+	"clock_gettime" -> "write" [  weight=3 ];
+
+	"clock_gettime" -> "epoll_wait" [  weight=1 ];
+
+	"clock_gettime" -> "clock_gettime" [  weight=45 ];
+
+	"clock_gettime" -> "timerfd_settime" [  weight=22 ];
+
+	"clock_gettime" -> "ioctl" [  weight=11 ];
+
+	"clock_gettime" -> "read" [  weight=16 ];
+
+	"clock_gettime" -> "recvmsg" [  weight=3 ];
+
+	"timerfd_settime" [  weight=0 ];
+
+	"timerfd_settime" -> "epoll_ctl" [  weight=26 ];
+
+	"timerfd_settime" -> "read" [  weight=1 ];
+
+	"write" [  weight=0 ];
+
+	"write" -> "clock_gettime" [  weight=10 ];
+
+	"write" -> "timerfd_settime" [  weight=4 ];
+
+	"close" [  weight=0 ];
+
+	"close" -> "ioctl" [  weight=4 ];
+
+	"close" -> "sendmsg" [  weight=2 ];
+
+	"close" -> "lseek" [  weight=4 ];
+
+	"close" -> "readlink" [  weight=4 ];
+
+	"close" -> "clock_gettime" [  weight=2 ];
+
+	"close" -> "close" [  weight=2 ];
+
+	"statx" [  weight=0 ];
+
+	"statx" -> "lseek" [  weight=12 ];
+
+	"readlink" [  weight=0 ];
+
+	"readlink" -> "openat" [  weight=4 ];
+
+	"readlink" -> "write" [  weight=4 ];
+
+	"epoll_ctl" [  weight=0 ];
+
+	"epoll_ctl" -> "clock_gettime" [  weight=23 ];
+
+	"epoll_ctl" -> "epoll_wait" [  weight=26 ];
+
+	"epoll_ctl" -> "read" [  weight=4 ];
+
+	"epoll_ctl" -> "epoll_ctl" [  weight=1 ];
+
+	"sendmsg" [  weight=0 ];
+
+	"sendmsg" -> "clock_gettime" [  weight=4 ];
+
+	"START" [  weight=0 ];
+
+	"START" -> "read" [  weight=1 ];
+
+	"epoll_wait" [  weight=0 ];
+
+	"epoll_wait" -> "clock_gettime" [  weight=2 ];
+
+	"epoll_wait" -> "read" [  weight=24 ];
+
+	"epoll_wait" -> "ioctl" [  weight=1 ];
+
+	"openat" [  weight=0 ];
+
+	"openat" -> "statx" [  weight=4 ];
+
+	"openat" -> "lseek" [  weight=4 ];
+
+	"lseek" [  weight=0 ];
+
+	"lseek" -> "statx" [  weight=8 ];
+
+	"lseek" -> "read" [  weight=12 ];
+
+}
